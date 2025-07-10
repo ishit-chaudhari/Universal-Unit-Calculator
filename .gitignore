@@ -1,207 +1,156 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[codz]
-*$py.class
+#In this project i am going to make a unit calculator
 
-# C extensions
-*.so
+#First, i am going to make a function for the weight converter
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+def weight_converter(weight, unit_from, unit_to):
+    if unit_from == "kg" and unit_to == "g":
+        return weight * 1000, unit_to
+    elif unit_from == "g" and unit_to == "kg":
+        return weight / 1000, unit_to
+    elif unit_from == "kg" and unit_to == "mg":
+        return weight * 1000000, unit_to
+    elif unit_from == "mg" and unit_to == "kg":
+        return weight / 1000000, unit_to
+    elif unit_from == "g" and unit_to == "mg":
+        return weight * 1000, unit_to
+    elif unit_from == "mg" and unit_to == "g":
+        return weight / 1000, unit_to
+    else:
+        return "Invalid unit", ""
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+#Now i am going to make a function for the length converter
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+def length_converter(length, unit_from, unit_to):
+    if unit_from == "m" and unit_to == "cm":
+        return length * 100, unit_to
+    elif unit_from == "cm" and unit_to == "m":
+        return length / 100, unit_to
+    elif unit_from == "m" and unit_to == "mm":
+        return length * 1000, unit_to
+    elif unit_from == "mm" and unit_to == "m":
+        return length / 1000, unit_to
+    elif unit_from == "cm" and unit_to == "mm":
+        return length * 10, unit_to
+    elif unit_from == "mm" and unit_to == "cm":
+        return length / 10, unit_to
+    elif unit_from == "m" and unit_to == "km":
+        return length / 1000, unit_to
+    elif unit_from == "km" and unit_to == "m":
+        return length * 1000, unit_to
+    else:
+        return "Invalid unit", ""
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py.cover
-.hypothesis/
-.pytest_cache/
-cover/
+#Now i am going to make a function for the temperature converter
 
-# Translations
-*.mo
-*.pot
+def temperature_converter(temperature, unit_from, unit_to):
+    if unit_from == "c" and unit_to == "f":
+        return (temperature * 9/5) + 32, unit_to
+    elif unit_from == "f" and unit_to == "c":
+        return (temperature - 32) * 5/9, unit_to
+    elif unit_from == "c" and unit_to == "k":
+        return temperature + 273.15, unit_to
+    elif unit_from == "k" and unit_to == "c":
+        return temperature - 273.15, unit_to
+    elif unit_from == "f" and unit_to == "k":
+        return (temperature + 459.67) * 5/9, unit_to
+    elif unit_from == "k" and unit_to == "f":
+        return temperature * 9/5 - 459.67, unit_to
+    else:
+        return "Invalid unit", ""
 
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
+#Now i am going to make a function for the volume converter
 
-# Flask stuff:
-instance/
-.webassets-cache
+def volume_converter(volume, unit_from, unit_to):
+    if unit_from == "l" and unit_to == "ml":
+        return volume * 1000, unit_to
+    elif unit_from == "ml" and unit_to == "l":
+        return volume / 1000, unit_to
+    elif unit_from == "l" and unit_to == "cl":
+        return volume * 100, unit_to
+    elif unit_from == "cl" and unit_to == "l":
+        return volume / 100, unit_to
+    elif unit_from == "l" and unit_to == "dl":
+        return volume * 10, unit_to
+    elif unit_from == "dl" and unit_to == "l":
+        return volume / 10, unit_to
+    elif unit_from == "l" and unit_to == "hl":
+        return volume / 100, unit_to
+    elif unit_from == "hl" and unit_to == "l":
+        return volume * 100, unit_to
+    else:
+        return "Invalid unit", ""
 
-# Scrapy stuff:
-.scrapy
+#Now i am going to make a function for the main menu. This function will be used to display the menu and get the user's choice.
 
-# Sphinx documentation
-docs/_build/
+def main():
+    print("--------------------------------")
+    print("Welcome to the unit calculator")
+    print("1. Weight converter")
+    print("2. Length converter")
+    print("3. Temperature converter")
+    print("4. Volume converter")
+    print("5. Quit")
+    print("--------------------------------")
+    choice = int(input("Enter your choice: "))
+    if choice == 1:
+        print("kelogram(kg) to gram(g)")
+        print("gram(g) to kelogram(kg)")
+        print("kelogram(kg) to milligram(mg)")
+        print("milligram(mg) to kelogram(kg)")
+        print("gram(g) to milligram(mg)")
+        print("milligram(mg) to gram(g)")
+        print("--------------------------------")
+        weight = float(input("Enter the weight: "))
+        unit_from = input("Enter the unit from: ")
+        unit_to = input("Enter the unit to: ")
+        result, symbol = weight_converter(weight, unit_from, unit_to)
+        print(f"{result} {symbol}")
+    elif choice == 2:
+        print("meter(m) to centimeter(cm)")
+        print("centimeter(cm) to meter(m)")
+        print("meter(m) to millimeter(mm)")
+        print("millimeter(mm) to meter(m)")
+        print("centimeter(cm) to millimeter(mm)")
+        print("millimeter(mm) to centimeter(cm)")
+        print("--------------------------------")
+        length = float(input("Enter the length: "))
+        unit_from = input("Enter the unit from: ")
+        unit_to = input("Enter the unit to: ")
+        result, symbol = length_converter(length, unit_from, unit_to)
+        print(f"{result} {symbol}")
+    elif choice == 3:
+        print("celsius(c) to fahrenheit(f)")
+        print("fahrenheit(f) to celsius(c)")
+        print("celsius(c) to kelvin(k)")
+        print("kelvin(k) to celsius(c)")
+        print("fahrenheit(f) to kelvin(k)")
+        print("kelvin(f) to fahrenheit(f)")
+        temperature = float(input("Enter the temperature: "))
+        unit_from = input("Enter the unit from: ")
+        unit_to = input("Enter the unit to: ")
+        result, symbol = temperature_converter(temperature, unit_from, unit_to)
+        print(f"{result} {symbol}")
+    elif choice == 4:
+        print("liter(l) to milliliter(ml)")
+        print("milliliter(ml) to liter(l)")
+        print("liter(l) to centiliter(cl)")
+        print("centiliter(cl) to liter(l)")
+        print("liter(l) to deciliter(dl)")
+        print("deciliter(dl) to liter(l)")
+        volume = float(input("Enter the volume: "))
+        unit_from = input("Enter the unit from: ")
+        unit_to = input("Enter the unit to: ")
+        result, symbol = volume_converter(volume, unit_from, unit_to)
+        print(f"{result} {symbol}")
+    elif choice == 5:
+        print("Thank you for using the unit calculator")
+        return False
+    else:
+        print("Invalid choice")
+        return True
 
-# PyBuilder
-.pybuilder/
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-#   For a library or package, you might want to ignore these files since the code is
-#   intended to run in multiple environments; otherwise, check them in:
-# .python-version
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# UV
-#   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
-#   This is especially recommended for binary packages to ensure reproducibility, and is more
-#   commonly ignored for libraries.
-#uv.lock
-
-# poetry
-#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
-#   This is especially recommended for binary packages to ensure reproducibility, and is more
-#   commonly ignored for libraries.
-#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
-#poetry.lock
-#poetry.toml
-
-# pdm
-#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
-#   pdm recommends including project-wide configuration in pdm.toml, but excluding .pdm-python.
-#   https://pdm-project.org/en/latest/usage/project/#working-with-version-control
-#pdm.lock
-#pdm.toml
-.pdm-python
-.pdm-build/
-
-# pixi
-#   Similar to Pipfile.lock, it is generally recommended to include pixi.lock in version control.
-#pixi.lock
-#   Pixi creates a virtual environment in the .pixi directory, just like venv module creates one
-#   in the .venv directory. It is recommended not to include this directory in version control.
-.pixi
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.envrc
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-# pytype static type analyzer
-.pytype/
-
-# Cython debug symbols
-cython_debug/
-
-# PyCharm
-#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
-#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
-#  and can be added to the global gitignore or merged into this file.  For a more nuclear
-#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
-#.idea/
-
-# Abstra
-# Abstra is an AI-powered process automation framework.
-# Ignore directories containing user credentials, local state, and settings.
-# Learn more at https://abstra.io/docs
-.abstra/
-
-# Visual Studio Code
-#  Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore 
-#  that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
-#  and can be added to the global gitignore or merged into this file. However, if you prefer, 
-#  you could uncomment the following to ignore the entire vscode folder
-# .vscode/
-
-# Ruff stuff:
-.ruff_cache/
-
-# PyPI configuration file
-.pypirc
-
-# Cursor
-#  Cursor is an AI-powered code editor. `.cursorignore` specifies files/directories to
-#  exclude from AI features like autocomplete and code analysis. Recommended for sensitive data
-#  refer to https://docs.cursor.com/context/ignore-files
-.cursorignore
-.cursorindexingignore
-
-# Marimo
-marimo/_static/
-marimo/_lsp/
-__marimo__/
+# Run the calculator loop
+while True:
+    should_continue = main()
+    if should_continue == False:
+        break
